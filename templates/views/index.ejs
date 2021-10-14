@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <div class="hero">
+        <div class="main-div">
+            <h2 class="main-heading">To Do List</h2>
+
+            <form action="/add" method="POST">
+                 <div class="input-grp">
+                     <div class="input-cont">
+                        <i class="fas fa-times"></i>
+                        <input type="text" id="input-box" placeholder="✍ Enter some task" name="task" required>
+                     </div>
+                    <div class="add-btn-cont">
+                        <button type="submit">Add</button>
+                    </div>
+                </div>
+            </form>
+
+            <h3 class="todos-label">Todos <i class="far fa-hand-point-right"></i></h3>
+
+            <div class="todos-list-container">
+
+                <%if(data.length == 0){%>
+                    <p class="no-task">No tasks added yet 😢</p>
+                <%}%>
+               
+                <% for(let i=data.length-1; i>=0 ; i--){ %>
+                    <div class="todo">
+                        <p class="todo-text"><%= data[i].task %></p>
+                        <div class="icons-cont">
+                            <a href="/update/<%= data[i]._id%>"><img src="./images/edit.png" alt=""></a>
+                            <a href="/checked/<%= data[i]._id%>"><img src="./images/checked.png" alt=""></a>
+                            <a href="/delete/<%= data[i]._id%>"><img src="./images/trash.png" alt=""></a>
+                        </div>
+                    </div>
+               <% } %>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
